@@ -162,5 +162,5 @@ anim = animation.FuncAnimation(fig, update, frames=range(n_frames),
 plt.tight_layout(); plt.show()
 
 # Lưu animation
-anim.save('vae_latent_walk.mp4', fps=20)
-anim.save('vae_latent_walk.gif', writer='imagemagick', fps=20)
+anim.save('../vae_latent_walk.mp4', fps=20)
+anim.save('../vae_latent_walk.gif', writer='imagemagick', fps=20)

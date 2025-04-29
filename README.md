@@ -1,108 +1,114 @@
-# A Guide to Variational Inference and Neural Networks for Approximating Latent Spaces
+# Hướng Dẫn Suy Luận Biến Thiên và Mạng Nơ-ron Cho Xấp Xỉ Không Gian Ẩn
 
-This repository contains the implementation and results of our research on Variational Autoencoders (VAE) and Autoencoders (AE) for latent space approximation. The project explores different architectures and their capabilities in learning and representing latent spaces.
+Kho lưu trữ này chứa mã nguồn và kết quả nghiên cứu về các mô hình Autoencoder (AE) và Variational Autoencoder (VAE) cho bài toán xấp xỉ không gian ẩn. Dự án này khám phá các kiến trúc khác nhau và khả năng học, biểu diễn không gian ẩn của chúng.
 
-## Project Overview
+## Tổng Quan Dự Án
 
-This research project implements and compares four different neural network architectures:
+Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác nhau:
 
-1. **2D Variational Autoencoder (VAE)**
-   - Features sampling animation
-   - 2-dimensional latent space
-   - Demonstrates the probabilistic nature of VAEs
+1. **Variational Autoencoder (VAE) 2D**
+   - Có hoạt ảnh sampling
+   - Không gian ẩn 2 chiều
+   - Thể hiện bản chất xác suất của VAE
 
-2. **2D Autoencoder (AE)**
-   - 2-dimensional latent space
-   - Deterministic encoding/decoding
-   - Comparison baseline for VAE
+2. **Autoencoder (AE) 2D**
+   - Không gian ẩn 2 chiều
+   - Mã hóa/giải mã xác định
+   - Làm chuẩn so sánh với VAE
 
-3. **32D Variational Autoencoder (VAE)**
-   - Higher-dimensional latent space
-   - Enhanced representation capacity
-   - More complex data modeling
+3. **Variational Autoencoder (VAE) 32D**
+   - Không gian ẩn 32 chiều
+   - Khả năng biểu diễn mạnh hơn
+   - Mô hình hóa dữ liệu phức tạp hơn
 
-4. **32D Autoencoder (AE)**
-   - Standard neural network architecture
-   - 32-dimensional latent space
-   - Baseline for high-dimensional encoding
+4. **Autoencoder (AE) 32D**
+   - Kiến trúc mạng nơ-ron tiêu chuẩn
+   - Không gian ẩn 32 chiều
+   - Chuẩn so sánh cho mã hóa chiều cao
 
-## Results and Analysis
+## Kết Quả và Phân Tích
 
-### 2D Models Comparison
-- **Latent Space Visualization**
-  - VAE: Shows continuous, well-structured latent space
-  - AE: Demonstrates clustering and separation of classes
-  - Sampling animations available for VAE
+### So Sánh Mô Hình 2D
+- **Trực quan hóa không gian ẩn**
+  - VAE: Không gian ẩn liên tục, cấu trúc tốt
+  - AE: Thể hiện sự gom cụm và tách biệt các lớp
+  - Có hoạt ảnh sampling cho VAE
 
-### 32D Models Comparison
-- **Reconstruction Quality**
-  - Quantitative metrics (MSE, SSIM)
-  - Qualitative visual comparisons
-  - Latent space distribution analysis
+### Hoạt ảnh sampling Autoencoder 2D
+![Hoạt ảnh sampling AE 2D](Kết_quả_huấn_luyện_Autoencoder\2D_latent_AE\sampling_1.gif)
 
-## Implementation Details
+### Hoạt ảnh sampling Autoencoder 2D (Ví dụ 2)
+![Hoạt ảnh sampling AE 2D 2](Kết_quả_huấn_luyện_Autoencoder\2D_latent_AE\sampling_2.gif)
 
-### Requirements
+### Hoạt ảnh di chuyển không gian ẩn VAE 2D
+![Hoạt ảnh latent walk VAE 2D](Kết_quả_huấn_luyện_Variational_Autoecoder\2D_latent_VAE\vae_latent_walk.gif)
+
+### So Sánh Mô Hình 32D
+- **Chất lượng tái tạo**
+  - Các chỉ số định lượng (MSE, SSIM)
+  - So sánh trực quan
+  - Phân tích phân bố không gian ẩn
+
+## Chi Tiết Triển Khai
+
+### Yêu Cầu
 - Python 3.x
 - PyTorch
 - NumPy
 - Matplotlib
 - scikit-learn
 
-### Project Structure
+### Cấu Trúc Dự Án
 ```
-├── models/
-│   ├── vae_2d.py
-│   ├── ae_2d.py
-│   ├── vae_32d.py
-│   └── ae_32d.py
-├── utils/
-│   ├── data_loader.py
-│   └── visualization.py
-├── results/
-│   ├── latent_space_visualizations/
-│   └── reconstruction_samples/
-└── training_scripts/
-    └── train.py
+├── Models/
+│   ├── Auto_enoder_MNIST_with_sampling_animation.py
+│   ├── Auto_enoder_MNIST.py
+│   ├── Variational_AutoEncoder_with_sampling_animation.py
+│   └── Variational_AutoEncoder.py
+├── Kết_quả_huấn_luyện_Autoencoder/
+│   ├── 2D_latent_AE/
+│   └── 32D_latent_AE/
+├── Kết_quả_huấn_luyện_Variational_Autoecoder/
+│   ├── 2D_latent_VAE/
+│   └── 32D_latent_VAE/
+├── README.md
+└── requirements.txt
 ```
 
-## Usage
+## Hướng Dẫn Sử Dụng
 
-1. Install dependencies:
+1. Cài đặt các thư viện cần thiết:
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Train models:
+2. Chạy các mô hình:
 ```bash
-python training_scripts/train.py --model [vae_2d|ae_2d|vae_32d|ae_32d]
+# Đối với VAE 2D có hoạt ảnh sampling
+python Models/Variational_AutoEncoder_with_sampling_animation.py
+
+# Đối với AE 2D có hoạt ảnh sampling
+python Models/Auto_enoder_MNIST_with_sampling_animation.py
+
+# Đối với VAE 32D
+python Models/Variational_AutoEncoder.py
+
+# Đối với AE 32D
+python Models/Auto_enoder_MNIST.py
 ```
 
-3. Generate visualizations:
-```bash
-python utils/visualization.py --model [model_name]
-```
+Kết quả và hình ảnh trực quan sẽ được lưu vào các thư mục tương ứng:
+- Kết quả Autoencoder: `Kết_quả_huấn_luyện_Autoencoder/`
+- Kết quả VAE: `Kết_quả_huấn_luyện_Variational_Autoecoder/`
 
-## Research Paper
+## Bài Báo Nghiên Cứu
 
-This implementation accompanies our research paper "A Guide to Variational Inference and Neural Networks for Approximating Latent Spaces". The paper provides detailed theoretical background, methodology, and analysis of the results presented in this repository.
+Mã nguồn này đi kèm với bài báo "Hướng Dẫn Suy Luận Biến Thiên và Mạng Nơ-ron Cho Xấp Xỉ Không Gian Ẩn". Bài báo trình bày chi tiết lý thuyết, phương pháp và phân tích kết quả được thể hiện trong kho lưu trữ này.
 
-## Citation
+## Giấy Phép
 
-If you use this code in your research, please cite our paper:
-```
-@article{your_paper_citation,
-  title={A Guide to Variational Inference and Neural Networks for Approximating Latent Spaces},
-  author={Your Name},
-  journal={Journal Name},
-  year={2024}
-}
-```
+Dự án này được phát hành theo giấy phép MIT - xem file LICENSE để biết chi tiết.
 
-## License
+## Liên Hệ
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Contact
-
-For questions and feedback, please open an issue in this repository or contact the authors.
+Nếu có câu hỏi hoặc góp ý, vui lòng mở issue trên kho lưu trữ hoặc liên hệ với tác giả.

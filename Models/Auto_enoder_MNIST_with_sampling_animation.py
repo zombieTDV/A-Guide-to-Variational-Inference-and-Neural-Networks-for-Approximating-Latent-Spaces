@@ -192,5 +192,5 @@ plt.tight_layout()
 plt.show()
 
 # Lưu animation
-anim.save('ae_latent_flythrough.mp4', fps=20, dpi=150)
-anim.save('ae_latent_flythrough.gif', writer='imagemagick', fps=20)
+anim.save('../ae_latent_flythrough.mp4', fps=20, dpi=150)
+anim.save('../ae_latent_flythrough.gif', writer='imagemagick', fps=20)
