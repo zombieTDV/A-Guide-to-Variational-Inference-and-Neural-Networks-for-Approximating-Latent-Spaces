@@ -45,7 +45,7 @@ Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác 
 
 ### So Sánh Mô Hình 32D
 - **Chất lượng tái tạo**
-  - Các chỉ số định lượng (MSE, SSIM)
+  - Chỉ số định lượng như: MSE
   - So sánh trực quan
   - Phân tích phân bố không gian ẩn
 
