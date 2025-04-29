@@ -1,17 +1,4 @@
-"""
-Autoencoder với MNIST và UMAP
-
-Mô tả:
-    Chương trình này triển khai một Autoencoder trên tập dữ liệu MNIST,
-    với không gian ẩn 32 chiều và sử dụng UMAP để giảm chiều xuống 2D. Nó bao gồm:
-    1. Huấn luyện Autoencoder để nén ảnh chữ số MNIST
-    2. Trực quan hóa không gian ẩn sử dụng UMAP
-    3. Kiểm tra khả năng tái tạo của mô hình
-
-Tác giả: Trương Đỗ Vương
-Ngày: 29/4/2025
-"""
-
+import os
 import torch
 from torch import nn, optim
 from torchvision import datasets, transforms
@@ -20,26 +7,25 @@ import matplotlib.pyplot as plt
 import numpy as np
 import umap.umap_ as umap
 
-# 1. Các tham số siêu hình (Hyperparameters)
+# Thư mục lưu kết quả
+output_dir = os.path.join('Kết_quả_huấn_luyện_Autoencoder', 'AE_UMAP')
+os.makedirs(output_dir, exist_ok=True)
+
+# 1. Tham số siêu (Hyperparameters)
 batch_size = 32
-lr         = 1e-3
-epochs     = 100
-device     = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+lr = 1e-3
+epochs = 100
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # 2. Chuẩn bị dữ liệu MNIST
 transform = transforms.ToTensor()
-train_ds  = datasets.MNIST(root='.', train=True,  download=True, transform=transform)
-test_ds   = datasets.MNIST(root='.', train=False, download=True, transform=transform)
-train_ld  = DataLoader(train_ds, batch_size=batch_size, shuffle=True)
-test_ld   = DataLoader(test_ds,  batch_size=batch_size, shuffle=False)
+train_ds = datasets.MNIST(root='.', train=True, download=True, transform=transform)
+test_ds = datasets.MNIST(root='.', train=False, download=True, transform=transform)
+train_ld = DataLoader(train_ds, batch_size=batch_size, shuffle=True)
+test_ld = DataLoader(test_ds, batch_size=batch_size, shuffle=False)
 
 # 3. Định nghĩa kiến trúc Autoencoder
 class Autoencoder(nn.Module):
-    """
-    Autoencoder với không gian ẩn 32 chiều.
-    Bộ mã hóa (encoder) nén ảnh 28x28 thành vector 32D.
-    Bộ giải mã (decoder) khôi phục ảnh từ vector 32D.
-    """
     def __init__(self):
         super().__init__()
         self.enc = nn.Sequential(
@@ -59,87 +45,86 @@ class Autoencoder(nn.Module):
 
 # Khởi tạo mô hình và optimizer
 model = Autoencoder().to(device)
-opt   = optim.Adam(model.parameters(), lr=lr)
-mse   = nn.MSELoss(reduction='sum')  # Tổng MSE trên tất cả các pixel
+opt = optim.Adam(model.parameters(), lr=lr)
+mse = nn.MSELoss(reduction='sum')
 
-# 4. Huấn luyện với hàm mất mát MSE tổng
-train_losses = []
-val_losses   = []
-
-for epoch in range(1, epochs+1):
-    # Huấn luyện
+# 4. Huấn luyện và ghi nhận MSE
+epochs_list = range(1, epochs+1)
+train_losses, val_losses = [], []
+for epoch in epochs_list:
     model.train()
-    running = 0.0
+    total_train = 0
     for imgs, _ in train_ld:
         imgs = imgs.to(device)
         opt.zero_grad()
         recon = model(imgs)
-        loss  = mse(recon, imgs) * 0.5
+        loss = mse(recon, imgs) * 0.5
         loss.backward()
         opt.step()
-        running += loss.item()
-    avg_train = running / len(train_ld.dataset)
-    train_losses.append(avg_train)
+        total_train += loss.item()
+    train_losses.append(total_train / len(train_ld.dataset))
 
-    # Đánh giá
     model.eval()
-    running = 0.0
+    total_val = 0
     with torch.no_grad():
         for imgs, _ in test_ld:
-            imgs  = imgs.to(device)
+            imgs = imgs.to(device)
             recon = model(imgs)
-            running += (mse(recon, imgs) * 0.5).item()
-    avg_test = running / len(test_ld.dataset)
-    val_losses.append(avg_test)
+            total_val += (mse(recon, imgs) * 0.5).item()
+    val_losses.append(total_val / len(test_ld.dataset))
+    print(f"Epoch {epoch}/{epochs} — Train MSE: {train_losses[-1]:.4f}, Val MSE: {val_losses[-1]:.4f}")
 
-    print(f"Epoch {epoch}/{epochs} — Train MSE: {avg_train:.4f}, Val MSE: {avg_test:.4f}")
-
-# 5. Vẽ đồ thị MSE huấn luyện và kiểm tra theo epochs
+# 5. Lưu đồ thị MSE
 plt.figure(figsize=(8,4))
-plt.plot(range(1, epochs+1), train_losses, label='Train MSE')
-plt.plot(range(1, epochs+1), val_losses,   label='Validation MSE')
+plt.plot(epochs_list, train_losses, label='Train MSE')
+plt.plot(epochs_list, val_losses,   label='Val MSE')
 plt.xlabel('Epoch')
 plt.ylabel('Summed MSE per image')
 plt.title('Train vs. Validation MSE Loss')
 plt.legend()
-plt.show()
+mse_path = os.path.join(output_dir, 'mse_loss.png')
+plt.savefig(mse_path, dpi=150)
+plt.close()
 
-# 6. Kiểm tra khả năng tái tạo
+# 6. Lưu ví dụ tái tạo
 model.eval()
 imgs, _ = next(iter(test_ld))
-imgs    = imgs.to(device)[:8]
+imgs = imgs.to(device)[:8]
 with torch.no_grad():
     recons = model(imgs).cpu()
-
 fig, axs = plt.subplots(2, 8, figsize=(12,3))
 for i in range(8):
     axs[0,i].imshow(imgs[i].cpu().squeeze(), cmap='gray'); axs[0,i].axis('off')
     axs[1,i].imshow(recons[i].squeeze(), cmap='gray');   axs[1,i].axis('off')
-plt.show()
+recon_path = os.path.join(output_dir, 'reconstruction_examples.png')
+plt.savefig(recon_path, dpi=150)
+plt.close()
 
-# 7. Trích xuất mã tiềm ẩn cho toàn bộ tập kiểm tra
+# 7. Trích xuất mã tiềm ẩn và giảm chiều với UMAP
 model.eval()
-all_z = []
-all_y = []
+all_z, all_y = [], []
 with torch.no_grad():
     for imgs, labels in test_ld:
         imgs = imgs.to(device)
-        z    = model.enc(imgs)             # Mã tiềm ẩn 32 chiều
+        z = model.enc(imgs)
         all_z.append(z.cpu().numpy())
         all_y.append(labels.numpy())
-
 all_z = np.concatenate(all_z, axis=0)
 all_y = np.concatenate(all_y, axis=0)
 
-# 8. Giảm chiều xuống 2D sử dụng UMAP
 reducer = umap.UMAP(n_components=2, random_state=42)
-z_2d    = reducer.fit_transform(all_z)
+z_2d = reducer.fit_transform(all_z)
 
-# 9. Vẽ scatter plot với màu theo nhãn thực
+# 8. Lưu UMAP latent space
 plt.figure(figsize=(8,6))
-scatter = plt.scatter(z_2d[:,0], z_2d[:,1], c=all_y, cmap='tab10', s=5, alpha=0.7)
-plt.colorbar(scatter, ticks=range(10), label='Digit label')
-plt.title('UMAP của không gian tiềm ẩn 32D Auto-Encoder trên MNIST')
+sc = plt.scatter(z_2d[:,0], z_2d[:,1], c=all_y, cmap='tab10', s=5, alpha=0.7)
+plt.colorbar(sc, ticks=range(10), label='Digit label')
+plt.title('UMAP of 32D AE Latent Space')
 plt.xlabel('UMAP 1')
 plt.ylabel('UMAP 2')
-plt.show() 
+umap_path = os.path.join(output_dir, 'umap_latent_space.png')
+plt.savefig(umap_path, dpi=150)
+plt.close()
+
+# 9. Thông báo
+print(f"Saved: {mse_path}, {recon_path}, {umap_path}")

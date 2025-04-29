@@ -35,13 +35,13 @@ Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác 
   - Có hoạt ảnh sampling cho VAE
 
 ### Hoạt ảnh sampling Autoencoder 2D
-![Hoạt ảnh sampling AE 2D](Kết_quả_huấn_luyện_Autoencoder/2D_latent_AE/sampling_1.gif)
+![Hoạt ảnh sampling AE 2D](Assets/sampling_1.gif)
 
 ### Hoạt ảnh sampling Autoencoder 2D (Ví dụ 2)
-![Hoạt ảnh sampling AE 2D 2](Kết_quả_huấn_luyện_Autoencoder/2D_latent_AE/sampling_2.gif)
+![Hoạt ảnh sampling AE 2D 2](Assets/sampling_2.gif)
 
 ### Hoạt ảnh di chuyển không gian ẩn VAE 2D
-![Hoạt ảnh latent walk VAE 2D](Kết_quả_huấn_luyện_Variational_Autoecoder/2D_latent_VAE/vae_latent_walk.gif)
+![Hoạt ảnh latent walk VAE 2D](Assets/vae_latent_walk.gif)
 
 ### So Sánh Mô Hình 32D
 - **Chất lượng tái tạo**
@@ -71,6 +71,11 @@ Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác 
 ├── Kết_quả_huấn_luyện_Variational_Autoecoder/
 │   ├── 2D_latent_VAE/
 │   └── 32D_latent_VAE/
+├── Assets/
+│   ├── sampling_1.gif
+│   ├── sampling_2.gif
+│   └── vae_latent_walk.gif
+|   |__ ...
 ├── README.md
 └── requirements.txt
 ```
