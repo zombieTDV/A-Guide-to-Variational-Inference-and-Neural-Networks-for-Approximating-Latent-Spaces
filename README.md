@@ -35,7 +35,7 @@ Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác 
   - Có hoạt ảnh sampling cho VAE
 
 #### VAE Latent Space Grid Sampling
-![VAE Latent Space Grid Sampling](../Kết_quả_huấn_luyện_Variational_Autoecoder/2D_latent_VAE/latent_space_grid_sampling.png)
+![VAE Latent Space Grid Sampling](Assets\2D_latent_VAE_assets\latent_space_grid_sampling.png)
 
 ### Hoạt ảnh sampling Autoencoder 2D
 ![Hoạt ảnh sampling AE 2D](Assets/sampling_1.gif)
