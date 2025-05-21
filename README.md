@@ -60,6 +60,8 @@ Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác 
 - NumPy
 - Matplotlib
 - scikit-learn
+- Pillow
+- scipy
 
 ### Cấu Trúc Dự Án
 ```
