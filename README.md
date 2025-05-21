@@ -34,6 +34,9 @@ Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác 
   - AE: Thể hiện sự gom cụm và tách biệt các lớp
   - Có hoạt ảnh sampling cho VAE
 
+#### VAE Latent Space Grid Sampling
+![VAE Latent Space Grid Sampling](../Kết_quả_huấn_luyện_Variational_Autoecoder/2D_latent_VAE/latent_space_grid_sampling.png)
+
 ### Hoạt ảnh sampling Autoencoder 2D
 ![Hoạt ảnh sampling AE 2D](Assets/sampling_1.gif)
 
@@ -72,9 +75,19 @@ Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác 
 │   ├── 2D_latent_VAE/
 │   └── 32D_latent_VAE/
 ├── Assets/
-│   ├── sampling_1.gif
-│   ├── sampling_2.gif
-│   └── vae_latent_walk.gif
+│   ├── AE_assets/
+│   |   ├── sampling_1.gif
+│   |   ├── sampling_1.mp4
+│   |   ├── sampling_2.gif
+│   |   ├── sampling_2.mp4
+│   |   ├── AE_UMAP.png
+│   |   └── AE_recon.png
+│   ├── 2D_latent_VAE_assets/
+│   │   ├── posterior_frames/
+│   │   ├── latent_space_grid_sampling.png
+│   │   ├── latent_space.png
+│   │   └── posterior_evolution.gif
+│   ├── vae_latent_walk.gif
 |   |__ ...
 ├── README.md
 └── requirements.txt
