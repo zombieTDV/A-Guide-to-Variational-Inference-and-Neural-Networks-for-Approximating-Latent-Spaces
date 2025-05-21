@@ -38,10 +38,10 @@ Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác 
 ![VAE Latent Space Grid Sampling](Assets\2D_latent_VAE_assets\latent_space_grid_sampling.png)
 
 ### Hoạt ảnh sampling Autoencoder 2D
-![Hoạt ảnh sampling AE 2D](Assets/sampling_1.gif)
+![Hoạt ảnh sampling AE 2D](Assets\AE_assets\sampling_1.gif)
 
 ### Hoạt ảnh sampling Autoencoder 2D (Ví dụ 2)
-![Hoạt ảnh sampling AE 2D 2](Assets/sampling_2.gif)
+![Hoạt ảnh sampling AE 2D 2](Assets\AE_assets\sampling_2.gif)
 
 ### Hoạt ảnh di chuyển không gian ẩn VAE 2D
 ![Hoạt ảnh latent walk VAE 2D](Assets/vae_latent_walk.gif)
