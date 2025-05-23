@@ -55,13 +55,59 @@ Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác 
 ## Chi Tiết Triển Khai
 
 ### Yêu Cầu
-- Python 3.x
-- PyTorch
-- NumPy
-- Matplotlib
-- scikit-learn
-- Pillow
-- scipy
+- Python 3.8+ (khuyến nghị Python 3.8-3.10)
+- PyTorch 2.0.0+ (với hoặc không có CUDA support)
+- NumPy 1.21.0+
+- Matplotlib 3.5.0+
+- scikit-learn 1.0.0+
+- Pillow 9.0.0+
+- scipy 1.7.0+
+
+### Cài Đặt
+
+#### Tùy chọn 1: Cài đặt cho GPU (Nếu bạn có NVIDIA GPU)
+1. Cài đặt CUDA Toolkit (tùy chọn, chỉ cần thiết nếu bạn muốn sử dụng GPU):
+   - Tải và cài đặt CUDA Toolkit từ [NVIDIA CUDA Downloads](https://developer.nvidia.com/cuda-downloads)
+   - Đảm bảo phiên bản CUDA tương thích với GPU của bạn
+
+2. Cài đặt PyTorch với CUDA support:
+```bash
+# Cho Windows với CUDA 11.8
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+# Cho Linux với CUDA 11.8
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+```
+
+#### Tùy chọn 2: Cài đặt cho CPU (Nếu bạn không có GPU hoặc không cần GPU)
+```bash
+# Cài đặt PyTorch cho CPU
+pip3 install torch torchvision torchaudio
+```
+
+3. Cài đặt các thư viện còn lại:
+```bash
+pip install numpy>=1.21.0
+pip install matplotlib>=3.5.0
+pip install scikit-learn>=1.0.0
+pip install Pillow>=9.0.0
+pip install scipy>=1.7.0
+```
+
+Hoặc sử dụng file requirements.txt:
+```bash
+pip install -r requirements.txt
+```
+
+### Kiểm Tra Cài Đặt
+Để kiểm tra PyTorch đã được cài đặt đúng với GPU support:
+```python
+import torch
+print(f"PyTorch version: {torch.__version__}")
+print(f"CUDA available: {torch.cuda.is_available()}")
+if torch.cuda.is_available():
+    print(f"CUDA device: {torch.cuda.get_device_name(0)}")
+```
 
 ### Cấu Trúc Dự Án
 ```
