@@ -43,8 +43,11 @@ Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác 
 ### Hoạt ảnh di chuyển không gian ẩn VAE 2D
 ![Hoạt ảnh latent walk VAE 2D](Assets/vae_latent_walk.gif)
 
+![Random Samples in Latent Space Classified by Classifier Model](Assets/2D_latent_VAE_assets/latent_space_classified_random_samples.png)
+
 #### VAE Latent Space Grid Sampling
 ![VAE Latent Space Grid Sampling](Assets/2D_latent_VAE_assets/latent_space_grid_sampling.png)
+
 
 ### So Sánh Mô Hình 32D
 - **Chất lượng tái tạo**
