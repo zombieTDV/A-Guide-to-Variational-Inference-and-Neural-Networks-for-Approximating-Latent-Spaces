@@ -2,6 +2,21 @@
 
 Kho lưu trữ này chứa mã nguồn và kết quả nghiên cứu về các mô hình Autoencoder (AE) và Variational Autoencoder (VAE) cho bài toán xấp xỉ không gian ẩn. Dự án này khám phá các kiến trúc khác nhau và khả năng học, biểu diễn không gian ẩn của chúng.
 
+## Mục Lục
+- [Tổng Quan Dự Án](#tổng-quan-dự-án)
+- [Kết Quả và Phân Tích](#kết-quả-và-phân-tích)
+  - [So Sánh Mô Hình 2D](#so-sánh-mô-hình-2d)
+  - [So Sánh Mô Hình 32D](#so-sánh-mô-hình-32d)
+- [Chi Tiết Triển Khai](#chi-tiết-triển-khai)
+  - [Yêu Cầu](#yêu-cầu)
+  - [Cài Đặt](#cài-đặt)
+  - [Kiểm Tra Cài Đặt](#kiểm-tra-cài-đặt)
+  - [Cấu Trúc Dự Án](#cấu-trúc-dự-án)
+- [Hướng Dẫn Sử Dụng](#hướng-dẫn-sử-dụng)
+- [Bài Báo Nghiên Cứu](#bài-báo-nghiên-cứu)
+- [Giấy Phép](#giấy-phép)
+- [Liên Hệ](#liên-hệ)
+
 ## Tổng Quan Dự Án
 
 Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác nhau:
