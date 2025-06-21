@@ -100,7 +100,7 @@ if __name__ == '__main__':
     # Khởi tạo mô hình và optimizer
     model = VAE().to(device)
     opt = optim.Adam(model.parameters(), lr=lr)
-    mse = nn.MSELoss(reduction='sum')  # Hàm mất mát cho phần tái tạo
+    mse = nn.MSELoss(reduction='mean')  # Hàm mất mát MSE cho phần tái tạo
 
     # 4. Huấn luyện và ghi nhận ELBO
     epochs_list = range(1, epochs+1)
@@ -114,7 +114,7 @@ if __name__ == '__main__':
             opt.zero_grad()
             recon, mu, logvar = model(imgs)
             # Tính loss: reconstruction loss + KL divergence
-            rec_loss = mse(recon, imgs) * 0.5
+            rec_loss = mse(recon, imgs)
             kl = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
             loss = rec_loss + kl
             loss.backward()
@@ -129,7 +129,7 @@ if __name__ == '__main__':
             for imgs, _ in test_ld:
                 imgs = imgs.to(device)
                 recon, mu, logvar = model(imgs)
-                rec_loss = mse(recon, imgs) * 0.5
+                rec_loss = mse(recon, imgs)
                 kl = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
                 total_val += (rec_loss + kl).item()
         val_elbo.append(total_val / len(test_ld.dataset))

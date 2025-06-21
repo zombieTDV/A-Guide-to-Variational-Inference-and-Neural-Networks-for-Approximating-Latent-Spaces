@@ -100,7 +100,7 @@ if __name__ == '__main__':
     # Khởi tạo mô hình và optimizer
     model = Autoencoder().to(device)
     opt = optim.Adam(model.parameters(), lr=lr)
-    mse = nn.MSELoss(reduction='sum')  # Hàm mất mát cho phần tái tạo
+    mse = nn.MSELoss(reduction='mean')  # Hàm mất mát MSE cho phần tái tạo
 
     # 4. Vòng lặp huấn luyện
     train_losses, val_losses = [], []  # Lưu lịch sử loss
@@ -112,7 +112,7 @@ if __name__ == '__main__':
             imgs = imgs.to(device)
             opt.zero_grad()
             recon = model(imgs)
-            loss = mse(recon, imgs) * 0.5  # Tính loss tái tạo
+            loss = mse(recon, imgs)  # Tính loss tái tạo (MSE)
             loss.backward()
             opt.step()
             running += loss.item()
@@ -125,7 +125,7 @@ if __name__ == '__main__':
             for imgs, _ in test_ld:
                 imgs = imgs.to(device)
                 recon = model(imgs)
-                running += (mse(recon, imgs)*0.5).item()
+                running += mse(recon, imgs).item()
         val_losses.append(running/len(test_ld.dataset))
 
         print(f"Epoch {epoch}/{epochs} — Train MSE: {train_losses[-1]:.4f}, Val MSE: {val_losses[-1]:.4f}")
@@ -135,7 +135,7 @@ if __name__ == '__main__':
     plt.plot(range(1, epochs+1), train_losses, label='Train MSE')
     plt.plot(range(1, epochs+1), val_losses, label='Val MSE')
     plt.xlabel('Epoch')
-    plt.ylabel('Summed MSE')
+    plt.ylabel('MSE')
     plt.legend()
     plt.title('Train vs. Validation Loss')
     loss_plot = os.path.join(output_dir, 'loss_curve.png')

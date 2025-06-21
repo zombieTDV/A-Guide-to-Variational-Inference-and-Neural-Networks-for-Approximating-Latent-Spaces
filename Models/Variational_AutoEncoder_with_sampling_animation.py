@@ -107,7 +107,7 @@ if __name__ == '__main__':
 
     model = VAE().to(device) # Khởi tạo mô hình VAE và chuyển sang thiết bị đã chọn
     opt   = optim.Adam(model.parameters(), lr=lr) # Khởi tạo bộ tối ưu Adam cho VAE với weight decay
-    mse   = nn.MSELoss(reduction='sum') # Hàm lỗi Mean Squared Error cho phần tái tạo
+    mse   = nn.MSELoss(reduction='mean')  # Hàm mất mát MSE cho phần tái tạo
 
     # --- Classifier Model Definition --- Định nghĩa mô hình phân loại
     class LatentClassifier(nn.Module):
@@ -223,7 +223,7 @@ if __name__ == '__main__':
             classifier_outputs = classifier_model(mu)
             
             # Tính VAE loss: lỗi tái tạo + KL divergence
-            vae_loss = mse(recon_batch, data) * 0.5 + -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
+            vae_loss = mse(recon_batch, data) + -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
             
             # Tính Classifier loss: lỗi cross-entropy giữa dự đoán và nhãn thật
             classifier_loss = classifier_criterion(classifier_outputs, labels)
