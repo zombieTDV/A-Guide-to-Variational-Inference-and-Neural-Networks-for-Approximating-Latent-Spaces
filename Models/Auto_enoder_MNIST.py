@@ -117,7 +117,7 @@ if __name__ == '__main__':
             for imgs, _ in test_ld:
                 imgs = imgs.to(device)
                 recon = model(imgs)
-                total_val += (mse(recon, imgs) * 0.5).item()
+                total_val += mse(recon, imgs).item()
         val_losses.append(total_val / len(test_ld.dataset))
         print(f"Epoch {epoch}/{epochs} — Train ½ SSE: {train_losses[-1]:.4f}, Val ½ SSE: {val_losses[-1]:.4f}")
 
