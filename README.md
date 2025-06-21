@@ -67,7 +67,7 @@ Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác 
 
 ### So Sánh Mô Hình 32D
 - **Chất lượng tái tạo**
-  - Chỉ số định lượng như: MSE
+  - Chỉ số định lượng như: ½ SSE (half Sum of Squared Errors, 0.5 × sum((x - x̂)^2))
   - So sánh trực quan
   - Phân tích phân bố không gian ẩn
 
@@ -197,3 +197,5 @@ Dự án này được phát hành theo giấy phép MIT - xem file LICENSE đ�
 ## Liên Hệ
 
 Nếu có câu hỏi hoặc góp ý, vui lòng mở issue trên kho lưu trữ hoặc liên hệ với tác giả.
+
+- Các mô hình sử dụng hàm mất mát **½ SSE (half Sum of Squared Errors)** cho phần tái tạo, tức là 0.5 × tổng bình phương sai số (0.5 × sum((x - x̂)^2)). Đây là một cách để thuận tiện cho việc tính đạo hàm trong huấn luyện mạng nơ-ron.

@@ -51,7 +51,7 @@ if __name__ == '__main__':
         num_workers = 0  # Không sử dụng worker khi chạy trên CPU
 
     # Tạo thư mục lưu kết quả
-    output_dir = os.path.join('Kết_quả_huấn_luyện_Autoencoder', 'AE_UMAP')
+    output_dir = os.path.join('Kết_quả_huấn_luyện_Autoencoder', '32D_latent_AE')
     os.makedirs(output_dir, exist_ok=True)
 
     # 1. Cấu hình các tham số siêu hình (Hyperparameters)
@@ -91,9 +91,9 @@ if __name__ == '__main__':
     # Khởi tạo mô hình và optimizer
     model = Autoencoder().to(device)
     opt = optim.Adam(model.parameters(), lr=lr)
-    mse = nn.MSELoss(reduction='sum')  # Hàm mất mát cho phần tái tạo
+    mse = nn.MSELoss(reduction='sum')  # Hàm mất mát ½ SSE (half Sum of Squared Errors) cho phần tái tạo
 
-    # 4. Huấn luyện và ghi nhận MSE
+    # 4. Huấn luyện và ghi nhận ½ SSE
     epochs_list = range(1, epochs+1)
     train_losses, val_losses = [], []  # Lưu lịch sử loss
     for epoch in epochs_list:
@@ -104,7 +104,7 @@ if __name__ == '__main__':
             imgs = imgs.to(device)
             opt.zero_grad()
             recon = model(imgs)
-            loss = mse(recon, imgs) * 0.5  # Tính loss tái tạo
+            loss = mse(recon, imgs) * 0.5  # Tính loss tái tạo (½ SSE)
             loss.backward()
             opt.step()
             total_train += loss.item()
@@ -119,18 +119,18 @@ if __name__ == '__main__':
                 recon = model(imgs)
                 total_val += (mse(recon, imgs) * 0.5).item()
         val_losses.append(total_val / len(test_ld.dataset))
-        print(f"Epoch {epoch}/{epochs} — Train MSE: {train_losses[-1]:.4f}, Val MSE: {val_losses[-1]:.4f}")
+        print(f"Epoch {epoch}/{epochs} — Train ½ SSE: {train_losses[-1]:.4f}, Val ½ SSE: {val_losses[-1]:.4f}")
 
-    # 5. Vẽ và lưu biểu đồ MSE
+    # 5. Vẽ và lưu biểu đồ ½ SSE
     plt.figure(figsize=(8,4))
-    plt.plot(epochs_list, train_losses, label='Train MSE')
-    plt.plot(epochs_list, val_losses, label='Val MSE')
+    plt.plot(epochs_list, train_losses, label='Train ½ SSE')
+    plt.plot(epochs_list, val_losses, label='Val ½ SSE')
     plt.xlabel('Epoch')
-    plt.ylabel('Summed MSE per image')
-    plt.title('Train vs. Validation MSE Loss')
+    plt.ylabel('Summed ½ SSE per image')
+    plt.title('Train vs. Validation ½ SSE Loss')
     plt.legend()
-    mse_path = os.path.join(output_dir, 'mse_loss.png')
-    plt.savefig(mse_path, dpi=150)
+    sse_path = os.path.join(output_dir, 'sse_loss.png')
+    plt.savefig(sse_path, dpi=150)
     plt.close()
 
     # 6. Lưu ví dụ tái tạo
@@ -175,4 +175,4 @@ if __name__ == '__main__':
     plt.close()
 
     # 9. Thông báo kết quả
-    print(f"Saved: {mse_path}, {recon_path}, {umap_path}")
+    print(f"Saved: {sse_path}, {recon_path}, {umap_path}")
