@@ -61,7 +61,7 @@ Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác 
 ### Lấy mẫu ngẫu nhiên và phân loại bằng mô hình phân loại
 ![Random Samples in Latent Space Classified by Classifier Model](Assets/2D_latent_VAE_assets/latent_space_classified_random_samples.png)
 
-#### Tái cấu trúc từ một phần của không gian ẩn VAE.
+### Tái cấu trúc từ một phần của không gian ẩn VAE.
 ![VAE Latent Space Grid Sampling](Assets/2D_latent_VAE_assets/latent_space_grid_sampling.png)
 
 
