@@ -198,4 +198,4 @@ Dự án này được phát hành theo giấy phép MIT - xem file LICENSE đ�
 
 Nếu có câu hỏi hoặc góp ý, vui lòng mở issue trên kho lưu trữ hoặc liên hệ với tác giả.
 
-- Các mô hình sử dụng hàm mất mát **½ SSE (half Sum of Squared Errors)** cho phần tái tạo, tức là 0.5 × tổng bình phương sai số (0.5 × sum((x - x̂)^2)). Đây là một cách để thuận tiện cho việc tính đạo hàm trong huấn luyện mạng nơ-ron.
+- Các mô hình sử dụng hàm mất mát **½ SSE (half Sum of Squared Errors)** cho phần tái tạo, tức là 0.5 × tổng bình phương sai số (0.5 × sum((x - x̂)^2)).
