@@ -1,6 +1,6 @@
 # Hướng Dẫn Suy Luận Biến Thiên và Mạng Nơ-ron Cho Xấp Xỉ Không Gian Ẩn
 
-Kho lưu trữ này chứa mã nguồn và kết quả nghiên cứu về các mô hình Autoencoder (AE) và Variational Autoencoder (VAE) cho bài toán xấp xỉ không gian ẩn. Dự án này khám phá các kiến trúc khác nhau và khả năng học, biểu diễn không gian ẩn của chúng.
+Kho lưu trữ này chứa mã nguồn và kết quả nghiên cứu về các mô hình Autoencoder (AE) và Variational Autoencoder (VAE) cho bài toán xấp xỉ không gian ẩn.
 
 ## Mục Lục
 - [Tổng Quan Dự Án](#tổng-quan-dự-án)
