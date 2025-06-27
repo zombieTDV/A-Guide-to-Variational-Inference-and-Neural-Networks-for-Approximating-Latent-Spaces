@@ -71,6 +71,16 @@ Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác 
   - So sánh trực quan
   - Phân tích phân bố không gian ẩn
 
+- **UMAP không gian tiềm ẩn 32D → 2D**
+
+  - *VAE 32D*: Không gian tiềm ẩn 32 chiều của Variational Autoencoder được giảm chiều bằng UMAP, thể hiện sự phân tách tốt giữa các lớp số viết tay MNIST.
+
+  ![UMAP VAE 32D](Assets/VAE_assets/VAE_UMAP.png)
+
+  - *AE 32D*: Không gian tiềm ẩn 32 chiều của Autoencoder cũng được giảm chiều bằng UMAP, cho thấy sự gom cụm và phân tách các lớp số.
+
+  ![UMAP AE 32D](Assets/AE_assets/AE_UMAP.png)
+
 ## Chi Tiết Triển Khai
 
 ### Yêu Cầu
@@ -131,8 +141,8 @@ if torch.cuda.is_available():
 ### Cấu Trúc Dự Án
 ```
 ├── Models/
-│   ├── Auto_enoder_MNIST_with_sampling_animation.py
-│   ├── Auto_enoder_MNIST.py
+│   ├── AutoEncoder_with_sampling_animation.py
+│   ├── AutoEncoder.py
 │   ├── Variational_AutoEncoder_with_sampling_animation.py
 │   └── Variational_AutoEncoder.py
 ├── Kết_quả_huấn_luyện_Autoencoder/
@@ -173,13 +183,13 @@ pip install -r requirements.txt
 python Models/Variational_AutoEncoder_with_sampling_animation.py
 
 # Đối với AE 2D có hoạt ảnh sampling
-python Models/Auto_enoder_MNIST_with_sampling_animation.py
+python Models/AutoEncoder_with_sampling_animation.py
 
 # Đối với VAE 32D
 python Models/Variational_AutoEncoder.py
 
 # Đối với AE 32D
-python Models/Auto_enoder_MNIST.py
+python Models/AutoEncoder.py
 ```
 
 Kết quả và hình ảnh trực quan sẽ được lưu vào các thư mục tương ứng:

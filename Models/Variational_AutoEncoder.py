@@ -23,8 +23,9 @@ Lưu ý:
     - Thư mục output sẽ được tạo tự động trong 'Kết_quả_huấn_luyện_Variational_Autoecoder/VAE_UMAP'
 """
 
-# Import các thư viện cần thiết
 import os
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3" #Ignore
+
 import torch
 from torch import nn, optim
 from torchvision import datasets, transforms

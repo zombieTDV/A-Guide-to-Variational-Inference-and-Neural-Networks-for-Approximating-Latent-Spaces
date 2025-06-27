@@ -25,6 +25,8 @@ Lưu ý:
 
 # Import các thư viện cần thiết
 import os
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3" #Ignore
+
 import torch
 from torch import nn, optim
 from torchvision import datasets, transforms
