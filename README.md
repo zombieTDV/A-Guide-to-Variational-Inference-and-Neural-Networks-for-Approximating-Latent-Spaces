@@ -193,7 +193,7 @@ Kết quả và hình ảnh trực quan sẽ được lưu vào các thư mục 
 
 ## Bài Báo Nghiên Cứu
 
-Mã nguồn này đi kèm với bài báo "Hướng Dẫn Suy Luận Biến Thiên và Mạng Nơ-ron Cho Xấp Xỉ Không Gian Ẩn". Bài báo trình bày chi tiết lý thuyết, phương pháp và phân tích kết quả được thể hiện trong kho mã nguồn này.
+Mã nguồn này đi kèm với bài báo "Hướng dẫn về Suy Luận Biến Thiên và Mạng nơ-ron trong xấp xỉ Không Gian Ẩn". Bài báo trình bày chi tiết lý thuyết, phương pháp và phân tích kết quả được thể hiện trong kho mã nguồn này.
 
 ## Giấy Phép
 
