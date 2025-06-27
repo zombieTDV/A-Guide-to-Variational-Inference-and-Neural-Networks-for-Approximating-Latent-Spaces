@@ -1,6 +1,6 @@
 # Hướng Dẫn Suy Luận Biến Thiên và Mạng Nơ-ron Cho Xấp Xỉ Không Gian Ẩn
 
-Kho lưu trữ này chứa mã nguồn và kết quả nghiên cứu về các mô hình Autoencoder (AE) và Variational Autoencoder (VAE) cho bài toán xấp xỉ không gian ẩn.
+Kho lưu trữ (github repo ) này chứa mã nguồn và kết quả nghiên cứu về các mô hình Autoencoder (AE) và Variational Autoencoder (VAE) cho bài toán xấp xỉ không gian ẩn.
 
 ## Mục Lục
 - [Tổng Quan Dự Án](#tổng-quan-dự-án)
@@ -193,7 +193,7 @@ Kết quả và hình ảnh trực quan sẽ được lưu vào các thư mục 
 
 ## Bài Báo Nghiên Cứu
 
-Mã nguồn này đi kèm với bài báo "Hướng dẫn về Suy Luận Biến Thiên và Mạng nơ-ron trong xấp xỉ Không Gian Ẩn". Bài báo trình bày chi tiết lý thuyết, phương pháp và phân tích kết quả được thể hiện trong kho mã nguồn này.
+Mã nguồn này đi kèm với bài báo "Hướng dẫn về Suy Luận Biến Thiên và Mạng nơ-ron trong xấp xỉ Không Gian Ẩn". Bài báo trình bày chi tiết lý thuyết, phương pháp và phân tích kết quả được thể hiện trong mã nguồn này.
 
 ## Giấy Phép
 
@@ -201,6 +201,6 @@ Dự án này được phát hành theo giấy phép MIT - xem file LICENSE đ�
 
 ## Liên Hệ
 
-Nếu có câu hỏi hoặc góp ý, vui lòng mở issue trên kho lưu trữ hoặc liên hệ với tác giả.
+Nếu có câu hỏi hoặc góp ý, vui lòng mở issue trên github hoặc liên hệ với tác giả.
 
 - Tất cả các mô hình đều sử dụng hàm mất mát **½ SSE (half Sum of Squared Errors)** cho phần tái tạo, tức là 0.5 × tổng bình phương sai số (0.5 × sum((x - x̂)^2)).
