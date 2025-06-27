@@ -39,7 +39,7 @@ Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác 
 4. **Autoencoder (AE) 32D**
    - Kiến trúc mạng nơ-ron tiêu chuẩn
    - Không gian ẩn 32 chiều
-   - Chuẩn so sánh cho mã hóa chiều cao
+   - Chuẩn so sánh cho mã hóa đa chiều.
 
 ## Kết Quả và Phân Tích
 
@@ -66,11 +66,6 @@ Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác 
 
 
 ### So Sánh Mô Hình 32D
-- **Chất lượng tái tạo**
-  - Chỉ số định lượng như: ½ SSE (half Sum of Squared Errors, 0.5 × sum((x - x̂)^2))
-  - So sánh trực quan
-  - Phân tích phân bố không gian ẩn
-
 - **UMAP không gian tiềm ẩn 32D → 2D**
 
   - *VAE 32D*: Không gian tiềm ẩn 32 chiều của Variational Autoencoder được giảm chiều bằng UMAP, thể hiện sự phân tách tốt giữa các lớp số viết tay MNIST.
