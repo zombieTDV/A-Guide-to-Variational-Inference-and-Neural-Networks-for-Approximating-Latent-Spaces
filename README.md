@@ -72,7 +72,7 @@ Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác 
 
   ![UMAP VAE 32D](Assets/VAE_assets/VAE_UMAP.png)
 
-  - *AE 32D*: Không gian tiềm ẩn 32 chiều của Autoencoder cũng được giảm chiều bằng UMAP, cho thấy sự gom cụm và phân tách các lớp số.
+  - *AE 32D*: Không gian tiềm ẩn 32 chiều của Autoencoder cũng được giảm chiều bằng UMAP, cho thấy sự gom cụm và phân tách.
 
   ![UMAP AE 32D](Assets/AE_assets/AE_UMAP.png)
 
@@ -193,7 +193,7 @@ Kết quả và hình ảnh trực quan sẽ được lưu vào các thư mục 
 
 ## Bài Báo Nghiên Cứu
 
-Mã nguồn này đi kèm với bài báo "Hướng Dẫn Suy Luận Biến Thiên và Mạng Nơ-ron Cho Xấp Xỉ Không Gian Ẩn". Bài báo trình bày chi tiết lý thuyết, phương pháp và phân tích kết quả được thể hiện trong kho lưu trữ này.
+Mã nguồn này đi kèm với bài báo "Hướng Dẫn Suy Luận Biến Thiên và Mạng Nơ-ron Cho Xấp Xỉ Không Gian Ẩn". Bài báo trình bày chi tiết lý thuyết, phương pháp và phân tích kết quả được thể hiện trong kho mã nguồn này.
 
 ## Giấy Phép
 
@@ -203,4 +203,4 @@ Dự án này được phát hành theo giấy phép MIT - xem file LICENSE đ�
 
 Nếu có câu hỏi hoặc góp ý, vui lòng mở issue trên kho lưu trữ hoặc liên hệ với tác giả.
 
-- Các mô hình sử dụng hàm mất mát **½ SSE (half Sum of Squared Errors)** cho phần tái tạo, tức là 0.5 × tổng bình phương sai số (0.5 × sum((x - x̂)^2)).
+- Tất cả các mô hình đều sử dụng hàm mất mát **½ SSE (half Sum of Squared Errors)** cho phần tái tạo, tức là 0.5 × tổng bình phương sai số (0.5 × sum((x - x̂)^2)).
