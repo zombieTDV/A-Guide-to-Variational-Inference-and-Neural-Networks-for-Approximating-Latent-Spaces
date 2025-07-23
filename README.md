@@ -1,6 +1,6 @@
 # Hướng Dẫn Suy Luận Biến Thiên và Mạng Nơ-ron Cho Xấp Xỉ Không Gian Ẩn
 
-Kho lưu trữ (github repo ) này chứa mã nguồn và kết quả nghiên cứu về các mô hình Autoencoder (AE) và Variational Autoencoder (VAE) cho bài toán xấp xỉ không gian ẩn.
+Kho lưu trữ này chứa mã nguồn và kết quả nghiên cứu về các mô hình Autoencoder (AE) và Variational Autoencoder (VAE) cho bài toán xấp xỉ không gian ẩn.
 
 ## Mục Lục
 - [Tổng Quan Dự Án](#tổng-quan-dự-án)
@@ -29,7 +29,7 @@ Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác 
 2. **Autoencoder (AE) 2D**
    - Không gian ẩn 2 chiều
    - Mã hóa/giải mã xác định
-   - Làm chuẩn so sánh với VAE
+   - Chuẩn so sánh với VAE
 
 3. **Variational Autoencoder (VAE) 32D**
    - Không gian ẩn 32 chiều
@@ -39,7 +39,7 @@ Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác 
 4. **Autoencoder (AE) 32D**
    - Kiến trúc mạng nơ-ron tiêu chuẩn
    - Không gian ẩn 32 chiều
-   - Chuẩn so sánh cho mã hóa đa chiều.
+   - Chuẩn so sánh cho mã hóa đa chiều
 
 ## Kết Quả và Phân Tích
 
@@ -49,82 +49,69 @@ Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác 
   - AE: Thể hiện sự gom cụm và tách biệt các lớp
   - Có hoạt ảnh sampling cho VAE
 
-### Hoạt ảnh sampling Autoencoder 2D
+#### Hoạt ảnh sampling Autoencoder 2D
 ![Hoạt ảnh sampling AE 2D](Assets/AE_assets/sampling_1.gif)
 
-### Hoạt ảnh sampling Autoencoder 2D (Ví dụ 2)
+#### Hoạt ảnh sampling Autoencoder 2D (Ví dụ 2)
 ![Hoạt ảnh sampling AE 2D 2](Assets/AE_assets/sampling_2.gif)
 
-### Hoạt ảnh di chuyển không gian ẩn VAE 2D
+#### Hoạt ảnh di chuyển không gian ẩn VAE 2D
 ![Hoạt ảnh latent walk VAE 2D](Assets/2D_latent_VAE_assets/vae_latent_walk.gif)
 
-### Lấy mẫu ngẫu nhiên và phân loại bằng mô hình phân loại
+#### Lấy mẫu ngẫu nhiên và phân loại bằng mô hình phân loại
 ![Random Samples in Latent Space Classified by Classifier Model](Assets/2D_latent_VAE_assets/latent_space_classified_random_samples.png)
 
-### Tái cấu trúc từ một phần của không gian ẩn VAE.
+#### Tái cấu trúc từ một phần của không gian ẩn VAE
 ![VAE Latent Space Grid Sampling](Assets/2D_latent_VAE_assets/latent_space_grid_sampling.png)
-
 
 ### So Sánh Mô Hình 32D
 - **UMAP không gian tiềm ẩn 32D → 2D**
-
   - *VAE 32D*: Không gian tiềm ẩn 32 chiều của Variational Autoencoder được giảm chiều bằng UMAP, thể hiện sự phân tách tốt giữa các lớp số viết tay MNIST.
-
-  ![UMAP VAE 32D](Assets/VAE_assets/VAE_UMAP.png)
-
+    ![UMAP VAE 32D](Assets/VAE_assets/VAE_UMAP.png)
   - *AE 32D*: Không gian tiềm ẩn 32 chiều của Autoencoder cũng được giảm chiều bằng UMAP, cho thấy sự gom cụm và phân tách.
-
-  ![UMAP AE 32D](Assets/AE_assets/AE_UMAP.png)
+    ![UMAP AE 32D](Assets/AE_assets/AE_UMAP.png)
 
 ## Chi Tiết Triển Khai
 
 ### Yêu Cầu
-- Python 3.8+ (khuyến nghị Python 3.8-3.10)
-- PyTorch 2.0.0+ (với hoặc không có CUDA support)
-- NumPy 1.21.0+
-- Matplotlib 3.5.0+
-- scikit-learn 1.0.0+
-- Pillow 9.0.0+
-- scipy 1.7.0+
+- Python >= 3.8 (khuyến nghị 3.8-3.10)
+- PyTorch >= 2.0.0 (có thể dùng CUDA)
+- NumPy >= 1.21.0
+- Matplotlib >= 3.5.0
+- scikit-learn >= 1.0.0
+- Pillow >= 9.0.0
+- scipy >= 1.7.0
 
 ### Cài Đặt
 
-#### Tùy chọn 1: Cài đặt cho GPU (Nếu bạn có NVIDIA GPU)
-1. Cài đặt CUDA Toolkit (tùy chọn, chỉ cần thiết nếu bạn muốn sử dụng GPU):
-   - Tải và cài đặt CUDA Toolkit từ [NVIDIA CUDA Downloads](https://developer.nvidia.com/cuda-downloads)
-   - Đảm bảo phiên bản CUDA tương thích với GPU của bạn
-
+#### Tùy chọn 1: Cài đặt cho GPU (NVIDIA GPU)
+1. Cài đặt CUDA Toolkit (nếu muốn dùng GPU):
+   - Tải và cài đặt từ [NVIDIA CUDA Downloads](https://developer.nvidia.com/cuda-downloads)
+   - Đảm bảo phiên bản CUDA tương thích với GPU
 2. Cài đặt PyTorch với CUDA support:
-```bash
-# Cho Windows với CUDA 11.8
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+   ```powershell
+   # Windows với CUDA 11.8
+   pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+   # Linux với CUDA 11.8
+   pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+   ```
 
-# Cho Linux với CUDA 11.8
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-```
-
-#### Tùy chọn 2: Cài đặt cho CPU (Nếu bạn không có GPU hoặc không cần GPU)
-```bash
-# Cài đặt PyTorch cho CPU
+#### Tùy chọn 2: Cài đặt cho CPU
+```powershell
 pip3 install torch torchvision torchaudio
 ```
 
 3. Cài đặt các thư viện còn lại:
-```bash
-pip install numpy>=1.21.0
-pip install matplotlib>=3.5.0
-pip install scikit-learn>=1.0.0
-pip install Pillow>=9.0.0
-pip install scipy>=1.7.0
+```powershell
+pip install numpy>=1.21.0 matplotlib>=3.5.0 scikit-learn>=1.0.0 Pillow>=9.0.0 scipy>=1.7.0
 ```
-
 Hoặc sử dụng file requirements.txt:
-```bash
+```powershell
 pip install -r requirements.txt
 ```
 
 ### Kiểm Tra Cài Đặt
-Để kiểm tra PyTorch đã được cài đặt đúng với GPU support:
+Kiểm tra PyTorch và GPU:
 ```python
 import torch
 print(f"PyTorch version: {torch.__version__}")
@@ -148,46 +135,42 @@ if torch.cuda.is_available():
 │   └── 32D_latent_VAE/
 ├── Assets/
 │   ├── AE_assets/
-│   |   ├── sampling_1.gif
-│   |   ├── sampling_1.mp4
-│   |   ├── sampling_2.gif
-│   |   ├── sampling_2.mp4
-│   |   ├── AE_UMAP.png
-│   |   └── AE_recon.png
+│   │   ├── sampling_1.gif
+│   │   ├── sampling_1.mp4
+│   │   ├── sampling_2.gif
+│   │   ├── sampling_2.mp4
+│   │   ├── AE_UMAP.png
+│   │   └── AE_recon.png
 │   ├── 2D_latent_VAE_assets/
 │   │   ├── posterior_frames/
 │   │   ├── latent_space_grid_sampling.png
 │   │   ├── latent_space.png
 │   │   └── posterior_evolution.gif
 │   ├── vae_latent_walk.gif
-|   |__ ...
 ├── README.md
 └── requirements.txt
 ```
 
 ## Hướng Dẫn Sử Dụng
 
-1. Cài đặt các thư viện cần thiết:
-```bash
+1. Cài đặt các thư viện:
+```powershell
 pip install -r requirements.txt
 ```
 
 2. Chạy các mô hình:
-```bash
-# Đối với VAE 2D có hoạt ảnh sampling
+```powershell
+# VAE 2D có hoạt ảnh sampling
 python Models/Variational_AutoEncoder_with_sampling_animation.py
-
-# Đối với AE 2D có hoạt ảnh sampling
+# AE 2D có hoạt ảnh sampling
 python Models/AutoEncoder_with_sampling_animation.py
-
-# Đối với VAE 32D
+# VAE 32D
 python Models/Variational_AutoEncoder.py
-
-# Đối với AE 32D
+# AE 32D
 python Models/AutoEncoder.py
 ```
 
-Kết quả và hình ảnh trực quan sẽ được lưu vào các thư mục tương ứng:
+Kết quả và hình ảnh trực quan sẽ được lưu vào các thư mục:
 - Kết quả Autoencoder: `Kết_quả_huấn_luyện_Autoencoder/`
 - Kết quả VAE: `Kết_quả_huấn_luyện_Variational_Autoecoder/`
 
@@ -203,4 +186,7 @@ Dự án này được phát hành theo giấy phép MIT - xem file LICENSE đ�
 
 Nếu có câu hỏi hoặc góp ý, vui lòng mở issue trên github hoặc liên hệ với tác giả.
 
+---
+
+**Lưu ý:**
 - Tất cả các mô hình đều sử dụng hàm mất mát **½ SSE (half Sum of Squared Errors)** cho phần tái tạo, tức là 0.5 × tổng bình phương sai số (0.5 × sum((x - x̂)^2)).
