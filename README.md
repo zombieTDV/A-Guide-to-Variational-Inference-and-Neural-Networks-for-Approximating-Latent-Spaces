@@ -1,94 +1,93 @@
 # Hướng Dẫn Suy Luận Biến Thiên và Mạng Nơ-ron Cho Xấp Xỉ Không Gian Ẩn
 
-Kho lưu trữ này chứa mã nguồn và kết quả nghiên cứu về các mô hình Autoencoder (AE) và Variational Autoencoder (VAE) cho bài toán xấp xỉ không gian ẩn.
+📦 Kho lưu trữ này chứa mã nguồn và kết quả nghiên cứu về các mô hình Autoencoder (AE) và Variational Autoencoder (VAE) cho bài toán xấp xỉ không gian ẩn.
 
 ## Mục Lục
-- [Tổng Quan Dự Án](#tổng-quan-dự-án)
-- [Kết Quả và Phân Tích](#kết-quả-và-phân-tích)
-  - [So Sánh Mô Hình 2D](#so-sánh-mô-hình-2d)
-  - [So Sánh Mô Hình 32D](#so-sánh-mô-hình-32d)
-- [Chi Tiết Triển Khai](#chi-tiết-triển-khai)
-  - [Yêu Cầu](#yêu-cầu)
-  - [Cài Đặt](#cài-đặt)
-  - [Kiểm Tra Cài Đặt](#kiểm-tra-cài-đặt)
-  - [Cấu Trúc Dự Án](#cấu-trúc-dự-án)
-- [Hướng Dẫn Sử Dụng](#hướng-dẫn-sử-dụng)
-- [Bài Báo Nghiên Cứu](#bài-báo-nghiên-cứu)
-- [Giấy Phép](#giấy-phép)
-- [Liên Hệ](#liên-hệ)
+- [📝 Tổng Quan Dự Án](#tổng-quan-dự-án)
+- [📊 Kết Quả và Phân Tích](#kết-quả-và-phân-tích)
+  - [🔍 So Sánh Mô Hình 2D](#so-sánh-mô-hình-2d)
+  - [🔍 So Sánh Mô Hình 32D](#so-sánh-mô-hình-32d)
+- [⚙️ Chi Tiết Triển Khai](#chi-tiết-triển-khai)
+  - [📋 Yêu Cầu](#yêu-cầu)
+  - [💻 Cài Đặt](#cài-đặt)
+  - [✅ Kiểm Tra Cài Đặt](#kiểm-tra-cài-đặt)
+  - [🗂️ Cấu Trúc Dự Án](#cấu-trúc-dự-án)
+- [🚀 Hướng Dẫn Sử Dụng](#hướng-dẫn-sử-dụng)
+- [📚 Bài Báo Nghiên Cứu](#bài-báo-nghiên-cứu)
+- [📝 Giấy Phép](#giấy-phép)
+- [📧 Liên Hệ](#liên-hệ)
 
-## Tổng Quan Dự Án
+## 📝 Tổng Quan Dự Án
 
 Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác nhau:
 
-1. **Variational Autoencoder (VAE) 2D**
-   - Có hoạt ảnh sampling
-   - Không gian ẩn 2 chiều
-   - Thể hiện bản chất xác suất của VAE
+1. 🤖 **Variational Autoencoder (VAE) 2D**
+   - 🎞️ Có hoạt ảnh sampling
+   - 🟦 Không gian ẩn 2 chiều
+   - 📈 Thể hiện bản chất xác suất của VAE
 
-2. **Autoencoder (AE) 2D**
-   - Không gian ẩn 2 chiều
-   - Mã hóa/giải mã xác định
-   - Chuẩn so sánh với VAE
+2. 🧠 **Autoencoder (AE) 2D**
+   - 🟦 Không gian ẩn 2 chiều
+   - 🔒 Mã hóa/giải mã xác định
+   - ⚖️ Chuẩn so sánh với VAE
 
-3. **Variational Autoencoder (VAE) 32D**
-   - Không gian ẩn 32 chiều
-   - Khả năng biểu diễn mạnh hơn
-   - Mô hình hóa dữ liệu phức tạp hơn
+3. 🤖 **Variational Autoencoder (VAE) 32D**
+   - 🧩 Không gian ẩn 32 chiều
+   - 💪 Khả năng biểu diễn mạnh hơn
+   - 🧬 Mô hình hóa dữ liệu phức tạp hơn
 
-4. **Autoencoder (AE) 32D**
-   - Kiến trúc mạng nơ-ron tiêu chuẩn
-   - Không gian ẩn 32 chiều
-   - Chuẩn so sánh cho mã hóa đa chiều
+4. 🧠 **Autoencoder (AE) 32D**
+   - 🧩 Không gian ẩn 32 chiều
+   - 🔄 Dùng để so sánh trực tiếp với VAE 32D
 
-## Kết Quả và Phân Tích
+## 📊 Kết Quả và Phân Tích
 
-### So Sánh Mô Hình 2D
+### 🔍 So Sánh Mô Hình 2D
 - **Trực quan hóa không gian ẩn**
   - VAE: Không gian ẩn liên tục, cấu trúc tốt
   - AE: Thể hiện sự gom cụm và tách biệt các lớp
-  - Có hoạt ảnh sampling cho VAE
+  - Có hoạt ảnh lấy mẫu (sampling) cho VAE
 
-#### Hoạt ảnh sampling Autoencoder 2D
+#### 🎞️ Hoạt ảnh sampling Autoencoder 2D
 ![Hoạt ảnh sampling AE 2D](Assets/AE_assets/sampling_1.gif)
 
-#### Hoạt ảnh sampling Autoencoder 2D (Ví dụ 2)
+#### 🎞️ Hoạt ảnh sampling Autoencoder 2D (Ví dụ 2)
 ![Hoạt ảnh sampling AE 2D 2](Assets/AE_assets/sampling_2.gif)
 
-#### Hoạt ảnh di chuyển không gian ẩn VAE 2D
+#### 🚶‍♂️ Hoạt ảnh di chuyển không gian ẩn VAE 2D
 ![Hoạt ảnh latent walk VAE 2D](Assets/2D_latent_VAE_assets/vae_latent_walk.gif)
 
-#### Lấy mẫu ngẫu nhiên và phân loại bằng mô hình phân loại
+#### 🎲 Lấy mẫu liên tục và phân loại trong không gian ẩn bằng mô hình phân loại
 ![Random Samples in Latent Space Classified by Classifier Model](Assets/2D_latent_VAE_assets/latent_space_classified_random_samples.png)
 
-#### Tái cấu trúc từ một phần của không gian ẩn VAE
+#### 🗺️ Tái cấu trúc từ một phần của không gian ẩn VAE
 ![VAE Latent Space Grid Sampling](Assets/2D_latent_VAE_assets/latent_space_grid_sampling.png)
 
-### So Sánh Mô Hình 32D
+### 🔍 So Sánh Mô Hình 32D
 - **UMAP không gian tiềm ẩn 32D → 2D**
   - *VAE 32D*: Không gian tiềm ẩn 32 chiều của Variational Autoencoder được giảm chiều bằng UMAP, thể hiện sự phân tách tốt giữa các lớp số viết tay MNIST.
     ![UMAP VAE 32D](Assets/VAE_assets/VAE_UMAP.png)
   - *AE 32D*: Không gian tiềm ẩn 32 chiều của Autoencoder cũng được giảm chiều bằng UMAP, cho thấy sự gom cụm và phân tách.
     ![UMAP AE 32D](Assets/AE_assets/AE_UMAP.png)
 
-## Chi Tiết Triển Khai
+## ⚙️ Chi Tiết Triển Khai
 
-### Yêu Cầu
-- Python >= 3.8 (khuyến nghị 3.8-3.10)
-- PyTorch >= 2.0.0 (có thể dùng CUDA)
-- NumPy >= 1.21.0
-- Matplotlib >= 3.5.0
-- scikit-learn >= 1.0.0
-- Pillow >= 9.0.0
-- scipy >= 1.7.0
+### 📋 Yêu Cầu
+- 🐍 Python >= 3.8 (khuyến nghị 3.8-3.10)
+- 🔥 PyTorch >= 2.0.0 (có thể dùng CUDA)
+- 📊 NumPy >= 1.21.0
+- 📈 Matplotlib >= 3.5.0
+- 🧪 scikit-learn >= 1.0.0
+- 🖼️ Pillow >= 9.0.0
+- 🧮 scipy >= 1.7.0
 
-### Cài Đặt
+### 💻 Cài Đặt
 
 #### Tùy chọn 1: Cài đặt cho GPU (NVIDIA GPU)
-1. Cài đặt CUDA Toolkit (nếu muốn dùng GPU):
+1. 🖥️ Cài đặt CUDA Toolkit (nếu muốn dùng GPU):
    - Tải và cài đặt từ [NVIDIA CUDA Downloads](https://developer.nvidia.com/cuda-downloads)
    - Đảm bảo phiên bản CUDA tương thích với GPU
-2. Cài đặt PyTorch với CUDA support:
+2. 🔥 Cài đặt PyTorch với CUDA support:
    ```powershell
    # Windows với CUDA 11.8
    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
@@ -101,7 +100,7 @@ Dự án này triển khai và so sánh bốn kiến trúc mạng nơ-ron khác 
 pip3 install torch torchvision torchaudio
 ```
 
-3. Cài đặt các thư viện còn lại:
+3. 📦 Cài đặt các thư viện còn lại:
 ```powershell
 pip install numpy>=1.21.0 matplotlib>=3.5.0 scikit-learn>=1.0.0 Pillow>=9.0.0 scipy>=1.7.0
 ```
@@ -110,7 +109,7 @@ Hoặc sử dụng file requirements.txt:
 pip install -r requirements.txt
 ```
 
-### Kiểm Tra Cài Đặt
+### ✅ Kiểm Tra Cài Đặt
 Kiểm tra PyTorch và GPU:
 ```python
 import torch
@@ -120,7 +119,7 @@ if torch.cuda.is_available():
     print(f"CUDA device: {torch.cuda.get_device_name(0)}")
 ```
 
-### Cấu Trúc Dự Án
+### 🗂️ Cấu Trúc Dự Án
 ```
 - LICENSE.md
 - README.md
@@ -167,14 +166,14 @@ if torch.cuda.is_available():
   |-- Variational_AutoEncoder.py
 ```
 
-## Hướng Dẫn Sử Dụng
+## 🚀 Hướng Dẫn Sử Dụng
 
-1. Cài đặt các thư viện:
+1. 📦 Cài đặt các thư viện:
 ```powershell
 pip install -r requirements.txt
 ```
 
-2. Chạy các mô hình:
+2. ▶️ Chạy các mô hình:
 ```powershell
 # VAE 2D có hoạt ảnh sampling
 python Models/Variational_AutoEncoder_with_sampling_animation.py
@@ -186,19 +185,19 @@ python Models/Variational_AutoEncoder.py
 python Models/AutoEncoder.py
 ```
 
-Kết quả và hình ảnh trực quan sẽ được lưu vào các thư mục:
+📁 Kết quả và hình ảnh trực quan sẽ được lưu vào các thư mục:
 - Kết quả Autoencoder: `Kết_quả_huấn_luyện_Autoencoder/`
 - Kết quả VAE: `Kết_quả_huấn_luyện_Variational_Autoecoder/`
 
-## Bài Báo Nghiên Cứu
+## 📚 Bài Báo Nghiên Cứu
 
 Mã nguồn này đi kèm với bài báo "Hướng dẫn về Suy Luận Biến Thiên và Mạng nơ-ron trong xấp xỉ Không Gian Ẩn". Bài báo trình bày chi tiết lý thuyết, phương pháp và phân tích kết quả được thể hiện trong mã nguồn này.
 
-## Giấy Phép
+## 📝 Giấy Phép
 
 Dự án này được phát hành theo giấy phép MIT - xem file LICENSE để biết chi tiết.
 
-## Liên Hệ
+## 📧 Liên Hệ
 
 Nếu có câu hỏi hoặc góp ý, vui lòng mở issue trên github hoặc liên hệ với tác giả.
 
