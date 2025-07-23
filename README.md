@@ -122,33 +122,49 @@ if torch.cuda.is_available():
 
 ### Cấu Trúc Dự Án
 ```
-├── Models/
-│   ├── AutoEncoder_with_sampling_animation.py
-│   ├── AutoEncoder.py
-│   ├── Variational_AutoEncoder_with_sampling_animation.py
-│   └── Variational_AutoEncoder.py
-├── Kết_quả_huấn_luyện_Autoencoder/
-│   ├── 2D_latent_AE/
-│   └── 32D_latent_AE/
-├── Kết_quả_huấn_luyện_Variational_Autoecoder/
-│   ├── 2D_latent_VAE/
-│   └── 32D_latent_VAE/
-├── Assets/
-│   ├── AE_assets/
-│   │   ├── sampling_1.gif
-│   │   ├── sampling_1.mp4
-│   │   ├── sampling_2.gif
-│   │   ├── sampling_2.mp4
-│   │   ├── AE_UMAP.png
-│   │   └── AE_recon.png
-│   ├── 2D_latent_VAE_assets/
-│   │   ├── posterior_frames/
-│   │   ├── latent_space_grid_sampling.png
-│   │   ├── latent_space.png
-│   │   └── posterior_evolution.gif
-│   ├── vae_latent_walk.gif
-├── README.md
-└── requirements.txt
+- LICENSE.md
+- README.md
+- requirements.txt
+- Assets/
+  |-- AE_assets/
+  |   |-- AE_recon.png
+  |   |-- AE_UMAP.png
+  |   |-- sampling_1.gif
+  |   |-- sampling_1.mp4
+  |   |-- sampling_2.gif
+  |   |-- sampling_2.mp4
+  |-- VAE_assets/
+  |   |-- VAE_recon.png
+  |   |-- VAE_UMAP.png
+  |   |-- vae_latent_walk.gif
+  |-- 2D_latent_VAE_assets/
+  |   |-- latent_space_classified_random_samples.png
+  |   |-- latent_space_grid_sampling.png
+  |   |-- latent_space.png
+  |   |-- posterior_evolution.gif
+  |   |-- vae_latent_walk.gif
+  |   |-- posterior_frames/
+  |       |-- training_posterior_0000.png
+  |       |-- training_posterior_0001.png
+  |       |-- ...
+- Kết_quả_huấn_luyện_Autoencoder/
+  |-- 2D_latent_AE/
+  |-- 32D_latent_AE/
+- Kết_quả_huấn_luyện_Variational_Autoecoder/
+  |-- 2D_latent_VAE/
+  |   |-- posterior_frames/
+  |-- 32D_latent_VAE/
+- MNIST/
+  |-- raw/
+  |   |-- t10k-images-idx3-ubyte(.gz)
+  |   |-- t10k-labels-idx1-ubyte(.gz)
+  |   |-- train-images-idx3-ubyte(.gz)
+  |   |-- train-labels-idx1-ubyte(.gz)
+- Models/
+  |-- AutoEncoder_with_sampling_animation.py
+  |-- AutoEncoder.py
+  |-- Variational_AutoEncoder_with_sampling_animation.py
+  |-- Variational_AutoEncoder.py
 ```
 
 ## Hướng Dẫn Sử Dụng
