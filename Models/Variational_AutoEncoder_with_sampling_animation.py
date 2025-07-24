@@ -1,77 +1,49 @@
 """
-Tên file: Variational_AutoEncoder_with_sampling_animation.py
-Tác giả: Trương Đỗ Vương
-Ngày tạo: 23/5/2024
+Variational AutoEncoder với hoạt ảnh sampling trên MNIST
 
-Mô tả:
-    File này triển khai mô hình Variational Autoencoder (VAE) trên tập dữ liệu MNIST với các tính năng:
-    1. Huấn luyện VAE với không gian ẩn 2 chiều
-    2. Tạo hoạt ảnh lấy mẫu từ không gian ẩn
-    3. Trực quan hóa quá trình huấn luyện và kết quả
-    4. Hỗ trợ đa xử lý và tối ưu hóa GPU
-    5. Tích hợp mô hình phân loại trên không gian ẩn
-
-Cấu trúc:
-    - Cấu hình GPU và đa xử lý
-    - Định nghĩa kiến trúc VAE và mô hình phân loại
-    - Huấn luyện đồng thời VAE và mô hình phân loại
-    - Tạo hoạt ảnh và trực quan hóa kết quả
-    - Phân tích không gian ẩn với các mẫu ngẫu nhiên
-
-Lưu ý:
-    - Đảm bảo cài đặt đầy đủ các thư viện: torch, torchvision, matplotlib, numpy, scipy, PIL
-    - Kiểm tra cấu hình GPU trước khi chạy
-    - Có thể điều chỉnh các tham số siêu hình (hyperparameters) để tối ưu kết quả
-    - Thư mục output sẽ được tạo tự động trong 'Kết_quả_huấn_luyện_Variational_Autoecoder/2D_latent_VAE'
-    - Cần cài đặt ImageMagick để tạo file GIF
+- Huấn luyện VAE với không gian ẩn 2 chiều
+- Tạo hoạt ảnh sampling và trực quan hóa
+- Tích hợp phân loại trên không gian ẩn
+- Lưu kết quả vào 'Kết_quả_huấn_luyện_Variational_Autoecoder/2D_latent_VAE'
 """
 
 # -*- coding: utf-8 -*-
-# Import các thư viện cần thiết
-import os # Thao tác với hệ điều hành (ví dụ: tạo thư mục)
-import torch # Thư viện học sâu PyTorch
-from torch import nn, optim # Các module mạng nơ-ron và bộ tối ưu
-from torchvision import datasets, transforms # Tải dataset và biến đổi dữ liệu
-from torch.utils.data import DataLoader # Tạo DataLoader để quản lý batch dữ liệu
-import matplotlib.pyplot as plt # Thư viện vẽ đồ thị
-from matplotlib import animation # Tạo hoạt ảnh
-import numpy as np # Thư viện tính toán số học
-from scipy.stats import chi2 # Sử dụng cho phân phối chi bình phương (để vẽ contour)
-from PIL import Image # Thư viện xử lý ảnh (để tạo GIF)
-import multiprocessing # Import multiprocessing
+import os
+import torch
+from torch import nn, optim
+from torchvision import datasets, transforms
+from torch.utils.data import DataLoader
+import matplotlib.pyplot as plt
+from matplotlib import animation
+import numpy as np
+from scipy.stats import chi2
+from PIL import Image
+import multiprocessing
 
 if __name__ == '__main__':
-    # Add freeze_support for Windows
     multiprocessing.freeze_support()
-    
-    # Kiểm tra và cấu hình GPU
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     if torch.cuda.is_available():
         print(f"Đang sử dụng GPU: {torch.cuda.get_device_name(0)}")
-        # Tối ưu hóa cho GPU
         torch.backends.cudnn.benchmark = True
-        # Đặt số worker cho DataLoader bằng một nửa số CPU có sẵn
-        num_workers = max(1, multiprocessing.cpu_count() // 2)  # Đảm bảo ít nhất 1 worker
+        num_workers = max(1, multiprocessing.cpu_count() // 2)
     else:
         print("Không tìm thấy GPU, sử dụng CPU")
-        num_workers = 0  # Không sử dụng worker khi chạy trên CPU
+        num_workers = 0
 
-    # Thư mục lưu kết quả huấn luyện và trực quan hóa
     output_dir = os.path.join('Kết_quả_huấn_luyện_Variational_Autoecoder', '2D_latent_VAE')
-    os.makedirs(output_dir, exist_ok=True) # Tạo thư mục nếu chưa tồn tại
+    os.makedirs(output_dir, exist_ok=True)
 
-    # 1. Tham số siêu (Hyperparameters) - Các giá trị cấu hình cho quá trình huấn luyện
-    batch_size = 128 if torch.cuda.is_available() else 32 # Tăng batch size nếu có GPU
-    lr         = 1e-3 # Tốc độ học cho bộ tối ưu
-    epochs     = 100 # Số lượng epoch huấn luyện
-    latent_dim = 2     # Chiều của không gian ẩn
+    batch_size = 128 if torch.cuda.is_available() else 32
+    lr         = 1e-3
+    epochs     = 100
+    latent_dim = 2
 
-    # 2. Chuẩn bị dữ liệu MNIST
-    transform = transforms.ToTensor() # Biến đổi ảnh từ PIL Image sang Tensor và chia tỷ lệ về [0, 1]
-    train_ds  = datasets.MNIST('.', train=True,  download=True, transform=transform) # Tải dataset MNIST cho huấn luyện
-    test_ds   = datasets.MNIST('.', train=False, download=True, transform=transform) # Tải dataset MNIST cho kiểm tra
-    train_ld  = DataLoader(train_ds, batch_size=batch_size, shuffle=True, num_workers=num_workers, pin_memory=True) # DataLoader cho tập huấn luyện, xáo trộn dữ liệu
-    test_ld   = DataLoader(test_ds,  batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=True) # DataLoader cho tập kiểm tra, không xáo trộn
+    transform = transforms.ToTensor()
+    train_ds  = datasets.MNIST('.', train=True,  download=True, transform=transform)
+    test_ds   = datasets.MNIST('.', train=False, download=True, transform=transform)
+    train_ld  = DataLoader(train_ds, batch_size=batch_size, shuffle=True, num_workers=num_workers, pin_memory=True)
+    test_ld   = DataLoader(test_ds,  batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=True)
 
     # 3. Định nghĩa kiến trúc VAE (Variational Autoencoder)
     class VAE(nn.Module):
@@ -362,7 +334,7 @@ if __name__ == '__main__':
     # In thông báo về các ảnh scatter plot cuối cùng đã lưu (using English filename)
     print(f"Đã lưu: {final_latent_space_path}")
 
-    # --- New Visualization: Random Latent Space Samples Classified by Trained Model --- # Trực quan hóa mới: Các điểm mẫu ngẫu nhiên trong không gian ẩn được phân loại bởi mô hình phân loại đã huấn luyện
+    # Trực quan hóa: Các điểm mẫu ngẫu nhiên trong không gian ẩn được phân loại bởi mô hình phân loại đã huấn luyện
 
     # Định nghĩa số lượng điểm mẫu ngẫu nhiên và phạm vi lấy mẫu
     total_random_samples = 100000  # Số lượng điểm mẫu ngẫu nhiên

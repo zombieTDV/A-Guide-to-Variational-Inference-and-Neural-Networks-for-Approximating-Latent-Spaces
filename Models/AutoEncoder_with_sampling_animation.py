@@ -1,26 +1,9 @@
 """
-Tên file: Auto_enoder_MNIST_with_sampling_animation.py
-Tác giả: Trương Đỗ Vương
-Ngày tạo: 23/5/2024
+AutoEncoder với hoạt ảnh sampling trên MNIST
 
-Mô tả:
-    File này triển khai mô hình Autoencoder đơn giản trên tập dữ liệu MNIST với các tính năng:
-    1. Huấn luyện Autoencoder với không gian ẩn 2 chiều
-    2. Tạo hoạt ảnh lấy mẫu từ không gian ẩn
-    3. Trực quan hóa quá trình huấn luyện và kết quả
-    4. Hỗ trợ đa xử lý và tối ưu hóa GPU
-
-Cấu trúc:
-    - Cấu hình GPU và đa xử lý
-    - Định nghĩa kiến trúc Autoencoder
-    - Huấn luyện mô hình
-    - Tạo hoạt ảnh và trực quan hóa kết quả
-
-Lưu ý:
-    - Đảm bảo cài đặt đầy đủ các thư viện: torch, torchvision, matplotlib, numpy
-    - Kiểm tra cấu hình GPU trước khi chạy
-    - Có thể điều chỉnh các tham số siêu hình (hyperparameters) để tối ưu kết quả
-    - Thư mục output sẽ được tạo tự động trong 'Kết_quả_huấn_luyện_Autoencoder/2D_latent_AE'
+- Huấn luyện Autoencoder với không gian ẩn 2 chiều
+- Tạo hoạt ảnh sampling và trực quan hóa
+- Lưu kết quả vào 'Kết_quả_huấn_luyện_Autoencoder/2D_latent_AE'
 """
 
 # Import các thư viện cần thiết
@@ -160,7 +143,7 @@ if __name__ == '__main__':
 
     # 7. Trích xuất và lưu scatter plot không gian ẩn 2D
     model.eval()
-    all_z, all_y = [], []
+    all_z, all_y = [],
     with torch.no_grad():
         for imgs, labels in test_ld:
             imgs = imgs.to(device)
