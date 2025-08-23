@@ -190,8 +190,8 @@ python Models/AutoEncoder.py
 - Kết quả VAE: `Kết_quả_huấn_luyện_Variational_Autoecoder/`
 
 ## 📚 Bài Báo Nghiên Cứu
-
-Mã nguồn này đi kèm với bài báo "Hướng dẫn về Suy Luận Biến Thiên và Mạng nơ-ron trong xấp xỉ Không Gian Ẩn". Bài báo trình bày chi tiết lý thuyết, phương pháp và phân tích kết quả được thể hiện trong mã nguồn này.
+Tải xuống bài nghiên cứu tại đây!
+[Download PDF](https://github.com/zombieTDV/A-Guide-to-Variational-Inference-and-Neural-Networks-for-Approximating-Latent-Spaces/blob/main/KHSV725-001.pdf)
 
 ## 📝 Giấy Phép
 
@@ -199,7 +199,7 @@ Dự án này được phát hành theo giấy phép MIT - xem file LICENSE đ�
 
 ## 📧 Liên Hệ
 
-Nếu có câu hỏi hoặc góp ý, vui lòng mở issue trên github hoặc liên hệ với tác giả.
+Nếu có câu hỏi hoặc góp ý, vui lòng mở issue trên github hoặc liên hệ với tác giả qua email: "vuongtd9261@ut.edu.vn".
 
 ---
 
