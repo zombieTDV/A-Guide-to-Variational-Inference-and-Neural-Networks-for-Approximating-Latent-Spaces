@@ -190,8 +190,8 @@ python Models/AutoEncoder.py
 - Kết quả VAE: `Kết_quả_huấn_luyện_Variational_Autoecoder/`
 
 ## 📚 Bài Báo Nghiên Cứu
-Tải xuống bài nghiên cứu tại đây!
-[Download PDF](https://github.com/zombieTDV/A-Guide-to-Variational-Inference-and-Neural-Networks-for-Approximating-Latent-Spaces/blob/main/KHSV725-001.pdf)
+Xem và tải xuống bài nghiên cứu khoa học tại đây!
+[NCKH](https://github.com/zombieTDV/A-Guide-to-Variational-Inference-and-Neural-Networks-for-Approximating-Latent-Spaces/blob/main/KHSV725-001.pdf)
 
 ## 📝 Giấy Phép
 
