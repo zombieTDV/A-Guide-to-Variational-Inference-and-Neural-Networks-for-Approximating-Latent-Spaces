@@ -1,33 +1,13 @@
 """
-Tên file: Variational_AutoEncoder_with_sampling_animation.py
-Tác giả: Trương Đỗ Vương
-Ngày tạo: 23/5/2024
+Variational AutoEncoder với hoạt ảnh sampling trên MNIST
 
-Mô tả:
-    File này triển khai mô hình Variational Autoencoder (VAE) trên tập dữ liệu MNIST với các tính năng:
-    1. Huấn luyện VAE với không gian ẩn 2 chiều
-    2. Tạo hoạt ảnh lấy mẫu từ không gian ẩn
-    3. Trực quan hóa quá trình huấn luyện và kết quả
-    4. Hỗ trợ đa xử lý và tối ưu hóa GPU
-    5. Tích hợp mô hình phân loại trên không gian ẩn
-
-Cấu trúc:
-    - Cấu hình GPU và đa xử lý
-    - Định nghĩa kiến trúc VAE và mô hình phân loại
-    - Huấn luyện đồng thời VAE và mô hình phân loại
-    - Tạo hoạt ảnh và trực quan hóa kết quả
-    - Phân tích không gian ẩn với các mẫu ngẫu nhiên
-
-Lưu ý:
-    - Đảm bảo cài đặt đầy đủ các thư viện: torch, torchvision, matplotlib, numpy, scipy, PIL
-    - Kiểm tra cấu hình GPU trước khi chạy
-    - Có thể điều chỉnh các tham số siêu hình (hyperparameters) để tối ưu kết quả
-    - Thư mục output sẽ được tạo tự động trong 'Kết_quả_huấn_luyện_Variational_Autoecoder/2D_latent_VAE'
-    - Cần cài đặt ImageMagick để tạo file GIF
+- Huấn luyện VAE với không gian ẩn 2 chiều
+- Tạo hoạt ảnh sampling và trực quan hóa
+- Tích hợp phân loại trên không gian ẩn
+- Lưu kết quả vào 'Kết_quả_huấn_luyện_Variational_Autoecoder/2D_latent_VAE'
 """
 
 # -*- coding: utf-8 -*-
-# Import các thư viện cần thiết
 import os
 import torch
 from torch import nn, optim
@@ -42,7 +22,6 @@ import multiprocessing
 
 if __name__ == '__main__':
     multiprocessing.freeze_support()
-    
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     if torch.cuda.is_available():
         print(f"Đang sử dụng GPU: {torch.cuda.get_device_name(0)}")
@@ -55,13 +34,11 @@ if __name__ == '__main__':
     output_dir = os.path.join('Kết_quả_huấn_luyện_Variational_Autoecoder', '2D_latent_VAE')
     os.makedirs(output_dir, exist_ok=True)
 
-    # 1. Tham số siêu (Hyperparameters)
     batch_size = 128 if torch.cuda.is_available() else 32
     lr         = 1e-3
     epochs     = 100
     latent_dim = 2
 
-    # 2. Chuẩn bị dữ liệu MNIST
     transform = transforms.ToTensor()
     train_ds  = datasets.MNIST('.', train=True,  download=True, transform=transform)
     test_ds   = datasets.MNIST('.', train=False, download=True, transform=transform)
